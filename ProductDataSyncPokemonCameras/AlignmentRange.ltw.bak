@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-16"?>
+<SerializationRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <WorkflowType>2</WorkflowType>
+    <IsTestCase>false</IsTestCase>
+    <UseArgs>false</UseArgs>
+    <ColumnsTableTestData />
+    <RowsTableTestData />
+    <ScriptType>CS</ScriptType>
+    <RootContainer>
+        <ClassName>LTools.Workflow.View.WFOnlyCode</ClassName>
+        <AssemblyName>LTools.Workflow, Version=1.0.6.1, Culture=neutral, PublicKeyToken=null</AssemblyName>
+        <Properties>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ComponentName</Name>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ComponentID</Name>
+                <Value xmlns:q1="http://microsoft.com/wsdl/types/" xsi:type="q1:guid">00000000-0000-0000-0000-000000000000</Value>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ContinueOnException</Name>
+                <Value xsi:type="xsd:boolean">false</Value>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>Variables</Name>
+                <Value xsi:type="ArrayOfScriptVariable" />
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ScriptCode</Name>
+                <Value xsi:type="xsd:string">using System;
+using System.Collections.Generic;
+using System.Text;
+using LTools.Scripting.Model;
+using LTools.Network.Model;
+
+public class PrimoScript
+{
+	public static LTools.Scripting.CSharp.ScriptDebugger __debug;
+	
+	public void main(LTools.Common.Model.WorkflowData wf)
+    {
+        String str_pathExcelFile = wf.GetArgument("in_pathExcelFile").ToString();
+		String str_nameOfSheet = wf.GetArgument("in_nameOfSheet").ToString();
+		String str_rangeAlign = wf.GetArgument("in_rangeAlign").ToString();
+		String str_alignmentOptionHorizontally = wf.GetArgument("in_alignmentOptionHorizontally").ToString();
+		String str_alignmentOptionVertically = wf.GetArgument("in_alignmentOptionVertically").ToString();
+		Boolean b_wrapText = (Boolean)wf.GetArgument("in_wrapText");
+		
+		Workbook wb_excelFile = new Workbook();//Объявление Excel файла
+		wb_excelFile.LoadDocument(str_pathExcelFile);//Подгрузка документа
+		Worksheet ws_excelSheet = wb_excelFile.Worksheets[str_nameOfSheet];//Получение листа для считывания диапазона
+		
+		CellRange cr_rangeAlign = ws_excelSheet.Range[str_rangeAlign];//Считывание диапазона
+		DevExpress.Spreadsheet.Formatting form_formatting = cr_rangeAlign.BeginUpdateFormatting();//Начало обновления форматирования
+		
+		switch(str_alignmentOptionHorizontally){
+			case "у":
+				form_formatting.Alignment.Horizontal = SpreadsheetHorizontalAlignment.General;//По умолчанию
+			break;
+			case "л":
+				form_formatting.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;//По левому краю
+			break;
+			case "ц":
+				form_formatting.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;//По центру
+			break;
+			case "п":
+				form_formatting.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Right;//По правому краю
+			break;
+			case "ш":
+				form_formatting.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Justify;//По ширине с переносом текста
+			break;
+		}
+		
+		switch(str_alignmentOptionVertically){
+			case "в":
+				form_formatting.Alignment.Vertical = SpreadsheetVerticalAlignment.Top;
+			break;
+			case "ц":
+				form_formatting.Alignment.Vertical = SpreadsheetVerticalAlignment.Center;
+			break;
+			case "н":
+				form_formatting.Alignment.Vertical = SpreadsheetVerticalAlignment.Bottom;
+			break;
+			case "ш":
+				form_formatting.Alignment.Vertical = SpreadsheetVerticalAlignment.Justify;
+			break;
+		}
+		if(b_wrapText) form_formatting.Alignment.WrapText = true;//Переснос текста
+		cr_rangeAlign.EndUpdateFormatting(form_formatting);//Завершение обновления форматирования
+		wb_excelFile.SaveDocument(str_pathExcelFile);//Сохранение документа
+    
+	}
+}</Value>
+            </SerializationItem>
+        </Properties>
+        <IsBreakpoint>false</IsBreakpoint>
+        <IsIgnore>false</IsIgnore>
+        <Components />
+    </RootContainer>
+    <GlobalVariables />
+    <Arguments>
+        <ScriptVariable>
+            <Name>in_pathExcelFile</Name>
+            <Group />
+            <Comment>Путь к Excel файлу</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_nameOfSheet</Name>
+            <Group />
+            <Comment>Название листа</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_rangeAlign</Name>
+            <Group />
+            <Comment>Диапазон, который нужно выровнять по горизонтали</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_alignmentOptionHorizontally</Name>
+            <Group />
+            <Comment>Вариант выравнивания по горизонтали (у - по умолчанию, л - по левому краю, ц - по центру, п - по правому краю, ш - по ширине с переносом текста)</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_alignmentOptionVertically</Name>
+            <Group />
+            <Comment>Выравнивание по вертикали (в - по верхнему краю, ц - по центру, н - по нижнему краю, ш - по ширине)</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_wrapText</Name>
+            <Group />
+            <Comment>Перенос текста</Comment>
+            <DataTypeString>Boolean</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+    </Arguments>
+    <UseCustomDiagramConnectorFormat>false</UseCustomDiagramConnectorFormat>
+</SerializationRoot>

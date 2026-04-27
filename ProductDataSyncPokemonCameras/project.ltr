@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-16"?>
+<LTProjectResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <WatchScripts>
+        <WatchScript>
+            <Script>in_pokemonsData.Rows.Count!=out_generalTablePokemonCameras.Rows.Count</Script>
+        </WatchScript>
+    </WatchScripts>
+    <Ignored>
+        <KeyValueItem>
+            <Key>C:\Users\viole\OneDrive\Документы\Primo RPA\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Main.ltw</Key>
+            <Value>3fb46c94-c5df-4da4-9d9a-848d7e565688</Value>
+        </KeyValueItem>
+    </Ignored>
+    <Breakpoints>
+        <KeyValueItem>
+            <Key>C:\Users\viole\OneDrive\Документы\Primo RPA\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Main.ltw</Key>
+            <Value>aa22d5e1-bbf8-4091-9470-7b56f9bb310f</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\OneDrive\Документы\Primo RPA\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FormationFinalReport.ltw</Key>
+            <Value>c3db7d82-204d-4ce7-8f56-b1588e219dcd</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\Desktop\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>8aafcfff-337e-482b-9169-049795a6c789</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\Desktop\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>ccb0ae16-9341-46e8-b6c4-58c45ab64d70</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\Desktop\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>60ecbe09-c5e7-4056-b81f-8323ff63ced0</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\Desktop\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>39dfe3a1-003a-451e-ab93-6d4b2baa0fb5</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\Desktop\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>2d3cb3c5-45ae-42fb-925c-a4571c569b8c</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\Desktop\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>f73550e3-c740-44e8-bc93-6a3db488c98c</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\Desktop\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>16732b3f-67be-4985-b0cf-2ab69f70f709</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\OneDrive\Документы\Primo RPA\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\UploadingDataFromTheApiAndYandex.Market.ltw</Key>
+            <Value>c1f654b2-c31b-4b5b-8854-b84b0d8f9f37</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\OneDrive\Документы\Primo RPA\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>a5051e0c-ea91-4142-b5f8-0e2254465448</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\OneDrive\Документы\Primo RPA\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>05037b58-be89-4c7e-9574-77323474d11d</Value>
+        </KeyValueItem>
+        <KeyValueItem>
+            <Key>C:\Users\viole\OneDrive\Документы\Primo RPA\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\Multi-Thread_Data_Aggregator_Web&amp;API_Integration\FillingDatabaseAndUploadingTableReport.ltw</Key>
+            <Value>4663bdce-4dbe-4f32-9e34-60769a5ab572</Value>
+        </KeyValueItem>
+    </Breakpoints>
+    <BreakpointLines />
+    <Git />
+    <LastOpenedItems>
+        <string>C:\Users\viole\OneDrive\Документы\Primo RPA\ProductDataSyncPokemonCameras\Process.ltw</string>
+    </LastOpenedItems>
+</LTProjectResources>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-16"?>
+<SerializationRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <WorkflowType>2</WorkflowType>
+    <IsTestCase>false</IsTestCase>
+    <UseArgs>false</UseArgs>
+    <ColumnsTableTestData />
+    <RowsTableTestData />
+    <ScriptType>CS</ScriptType>
+    <RootContainer>
+        <ClassName>LTools.Workflow.View.WFOnlyCode</ClassName>
+        <AssemblyName>LTools.Workflow, Version=1.0.6.1, Culture=neutral, PublicKeyToken=null</AssemblyName>
+        <Properties>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ComponentName</Name>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ComponentID</Name>
+                <Value xmlns:q1="http://microsoft.com/wsdl/types/" xsi:type="q1:guid">00000000-0000-0000-0000-000000000000</Value>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ContinueOnException</Name>
+                <Value xsi:type="xsd:boolean">false</Value>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>Variables</Name>
+                <Value xsi:type="ArrayOfScriptVariable" />
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ScriptCode</Name>
+                <Value xsi:type="xsd:string">using System;
+using System.Collections.Generic;
+using System.Text;
+using LTools.Scripting.Model;
+using LTools.Network.Model;
+
+public class PrimoScript
+{
+	public static LTools.Scripting.CSharp.ScriptDebugger __debug;
+	
+	public void main(LTools.Common.Model.WorkflowData wf)
+    {
+        String str_pathExcelFile = wf.GetArgument("in_pathExcelFile").ToString();
+		String str_nameOfSheet = wf.GetArgument("in_nameOfSheet").ToString();
+		String str_rangeForChangingText = wf.GetArgument("in_rangeForChangingText").ToString();
+		
+		Boolean b_boldTextSelection = (Boolean)wf.GetArgument("in_boldTextSelection");
+		Boolean b_italicizedTextSelection = (Boolean)wf.GetArgument("in_italicizedTextSelection");
+		Boolean b_underliningText = (Boolean)wf.GetArgument("in_underliningText");
+		
+		Workbook wb_excelFile = new Workbook();//Объявление Excel файла
+		wb_excelFile.LoadDocument(str_pathExcelFile);//Подгрузка документа
+		Worksheet ws_excelSheet = wb_excelFile.Worksheets[str_nameOfSheet];//Получение листа для считывания диапазона
+		
+		CellRange cr_rangeForChangingText = ws_excelSheet.Range[str_rangeForChangingText];//Считывание диапазона
+		DevExpress.Spreadsheet.Formatting form_formatting = cr_rangeForChangingText.BeginUpdateFormatting();//Начало изменения форматирования
+		
+		if(b_boldTextSelection) form_formatting.Font.Bold = true; 
+		if(b_italicizedTextSelection) form_formatting.Font.Italic = true;
+		if(b_underliningText) form_formatting.Font.UnderlineType = UnderlineType.Single;
+		
+		cr_rangeForChangingText.EndUpdateFormatting(form_formatting);//Завершение изменения форматирования
+		wb_excelFile.SaveDocument(str_pathExcelFile);//Сохранение документа
+    }
+}</Value>
+            </SerializationItem>
+        </Properties>
+        <IsBreakpoint>false</IsBreakpoint>
+        <IsIgnore>false</IsIgnore>
+        <Components />
+    </RootContainer>
+    <GlobalVariables />
+    <Arguments>
+        <ScriptVariable>
+            <Name>in_pathExcelFile</Name>
+            <Group />
+            <Comment>Путь до Excel файла</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_nameOfSheet</Name>
+            <Group />
+            <Comment>Название листа в котором будет изменен текст диапазона</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_rangeForChangingText</Name>
+            <Group />
+            <Comment>Диапазон для изменения текста</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_boldTextSelection</Name>
+            <Group />
+            <Comment>Жирное выделение текста</Comment>
+            <DataTypeString>Boolean</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_italicizedTextSelection</Name>
+            <Group />
+            <Comment>Курсив</Comment>
+            <DataTypeString>Boolean</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_underliningText</Name>
+            <Group />
+            <Comment>Подчеркивание текста</Comment>
+            <DataTypeString>Boolean</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+    </Arguments>
+    <UseCustomDiagramConnectorFormat>false</UseCustomDiagramConnectorFormat>
+</SerializationRoot>

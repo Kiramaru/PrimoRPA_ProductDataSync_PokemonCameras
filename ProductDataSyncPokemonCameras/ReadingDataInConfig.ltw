@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-16"?>
+<SerializationRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <WorkflowType>2</WorkflowType>
+    <IsTestCase>false</IsTestCase>
+    <UseArgs>false</UseArgs>
+    <ColumnsTableTestData />
+    <RowsTableTestData />
+    <ScriptType>CS</ScriptType>
+    <RootContainer>
+        <ClassName>LTools.Workflow.View.WFOnlyCode</ClassName>
+        <AssemblyName>LTools.Workflow, Version=1.0.6.1, Culture=neutral, PublicKeyToken=null</AssemblyName>
+        <Properties>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ComponentName</Name>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ComponentID</Name>
+                <Value xmlns:q1="http://microsoft.com/wsdl/types/" xsi:type="q1:guid">00000000-0000-0000-0000-000000000000</Value>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ContinueOnException</Name>
+                <Value xsi:type="xsd:boolean">false</Value>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>Variables</Name>
+                <Value xsi:type="ArrayOfScriptVariable" />
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ScriptCode</Name>
+                <Value xsi:type="xsd:string">using System;
+using System.Collections.Generic;
+using System.Text;
+using LTools.Scripting.Model;
+using LTools.Network.Model;
+using DevExpress.Spreadsheet;
+
+public class PrimoScript
+{
+	public static LTools.Scripting.CSharp.ScriptDebugger __debug;
+	
+	public void main(LTools.Common.Model.WorkflowData wf)
+    {
+        Dictionary&lt;String, String&gt; dict_config = (Dictionary&lt;String, String&gt;)wf.GetArgument("io_config");
+		String str_pathConfig = (String)wf.GetArgument("in_pathConfig");
+		
+		Workbook wb_configExcelfile = new Workbook();
+		wb_configExcelfile.LoadDocument(str_pathConfig);
+		Worksheet ws_firstList = wb_configExcelfile.Worksheets[0];//Первый лист
+		CellRange cr_usedRange = ws_firstList.GetUsedRange();//Весь использованный диапазон
+		dict_config = Enumerable.Range(1, cr_usedRange.BottomRowIndex)
+		    .Where(i =&gt; ws_firstList[i, 0]?.Value != null 
+		                &amp;&amp; !string.IsNullOrEmpty(ws_firstList[i, 0].Value.ToString()))
+		    .GroupBy(i =&gt; ws_firstList[i, 0].Value.ToString()) // Защита от дубликатов
+		    .ToDictionary(
+		        g =&gt; g.Key,
+		        g =&gt; ws_firstList[g.First(), 1]?.Value?.ToString() ?? string.Empty
+		    );//Заполнение словаря со 2 строки, где ключ 1 столбец, значение 2 столбец
+		wf.SetArgument("io_config", dict_config);
+    }
+}</Value>
+            </SerializationItem>
+        </Properties>
+        <IsBreakpoint>false</IsBreakpoint>
+        <IsIgnore>false</IsIgnore>
+        <Components />
+    </RootContainer>
+    <GlobalVariables />
+    <Arguments>
+        <ScriptVariable>
+            <Name>io_config</Name>
+            <Group />
+            <Comment>Словарь с конфигом</Comment>
+            <DataTypeString>System.Collections.Generic.Dictionary&lt;String,String&gt;</DataTypeString>
+            <Direction>IN_OUT</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_pathConfig</Name>
+            <Group />
+            <Comment>Путь до кофнига</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+    </Arguments>
+    <UseCustomDiagramConnectorFormat>false</UseCustomDiagramConnectorFormat>
+</SerializationRoot>

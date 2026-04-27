@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-16"?>
+<SerializationRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <WorkflowType>2</WorkflowType>
+    <IsTestCase>false</IsTestCase>
+    <UseArgs>false</UseArgs>
+    <ColumnsTableTestData />
+    <RowsTableTestData />
+    <ScriptType>CS</ScriptType>
+    <RootContainer>
+        <ClassName>LTools.Workflow.View.WFOnlyCode</ClassName>
+        <AssemblyName>LTools.Workflow, Version=1.0.6.1, Culture=neutral, PublicKeyToken=null</AssemblyName>
+        <Properties>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ComponentName</Name>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ComponentID</Name>
+                <Value xmlns:q1="http://microsoft.com/wsdl/types/" xsi:type="q1:guid">00000000-0000-0000-0000-000000000000</Value>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ContinueOnException</Name>
+                <Value xsi:type="xsd:boolean">false</Value>
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>Variables</Name>
+                <Value xsi:type="ArrayOfScriptVariable" />
+            </SerializationItem>
+            <SerializationItem>
+                <IsListValue>false</IsListValue>
+                <Name>ScriptCode</Name>
+                <Value xsi:type="xsd:string">using System;
+using System.Collections.Generic;
+using System.Text;
+using LTools.Scripting.Model;
+using LTools.Network.Model;
+
+public class PrimoScript
+{
+    public static LTools.Scripting.CSharp.ScriptDebugger __debug;
+
+    public void main(LTools.Common.Model.WorkflowData wf)
+    {
+        String str_linkExcelFile = wf.GetArgument("in_linkExcelFile").ToString();
+        String str_nameSheetRangeCopied = wf.GetArgument("in_nameSheetRangeCopied").ToString();
+
+        Workbook wb_mainExcelFileReadingRange = new Workbook();//Объявление основного Excel файла с которого будет считываться используемый диапазон
+        wb_mainExcelFileReadingRange.LoadDocument(str_linkExcelFile);//Подгрузка основного Excel файла
+
+        Worksheet ws_rangeReadingSheet = wb_mainExcelFileReadingRange.Worksheets[str_nameSheetRangeCopied];//Получение листа для считывания диапазона
+        CellRange cr_changedRange = ws_rangeReadingSheet.GetUsedRange();//Получение измененного диапазона
+        wf.SetArgument("out_changedRangeExcel", cr_changedRange.GetReferenceA1());//Передача диапазона в основной процесс, в аргумент out_changedRangeExcel
+    }
+}</Value>
+            </SerializationItem>
+        </Properties>
+        <IsBreakpoint>false</IsBreakpoint>
+        <IsIgnore>false</IsIgnore>
+        <Components />
+    </RootContainer>
+    <GlobalVariables />
+    <Arguments>
+        <ScriptVariable>
+            <Name>out_changedRangeExcel</Name>
+            <Group />
+            <Comment>Измененный диапазон в Excel файле</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>OUT</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_linkExcelFile</Name>
+            <Group />
+            <Comment>Cсылка на файл excel для нахождения измененного диапазона</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+        <ScriptVariable>
+            <Name>in_nameSheetRangeCopied</Name>
+            <Group />
+            <Comment>Название листа с которого будет скопирован диапазон</Comment>
+            <DataTypeString>String</DataTypeString>
+            <Direction>IN</Direction>
+        </ScriptVariable>
+    </Arguments>
+    <UseCustomDiagramConnectorFormat>false</UseCustomDiagramConnectorFormat>
+</SerializationRoot>
